@@ -136,6 +136,14 @@ public class ExceptionTest {
 	}
 	
 	@Test
+	public void test_Find_Function3() throws UnsupportedExpressionException {
+		thrown.expect(UnsupportedExpressionException.class);
+		thrown.expectMessage("Can't find the function. [parent]");
+		
+		env.parse("{#parent()}");
+	}
+	
+	@Test
 	public void test_Find_Function_Method() throws UnsupportedExpressionException {
 		thrown.expect(UnsupportedExpressionException.class);
 		thrown.expectMessage("Can't find the method to process.[java.lang.String, java.lang.String, java.lang.String]");

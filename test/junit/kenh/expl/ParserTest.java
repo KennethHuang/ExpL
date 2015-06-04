@@ -131,6 +131,9 @@ public class ParserTest {
 		Assert.assertEquals("", env.parse("{#b:getString(false)}"));
 		Assert.assertNotNull(env.parse("{#b:getString(false)}"));
 		Assert.assertEquals(" ", env.parse("{#b:getString(1)}"));
+		
+		Assert.assertEquals("Parent", env.parse("{#child()}"));
+		Assert.assertEquals("Child", env.parse("{#child(1)}"));
 	}
 	
 	@Test
