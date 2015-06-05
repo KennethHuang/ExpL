@@ -151,4 +151,30 @@ public class ExceptionTest {
 		env.parse("{#getString(a,b,c)}");
 	}
 	
+	@Test
+	public void test_Get_Variable1() throws UnsupportedExpressionException {
+		thrown.expect(NullPointerException.class);
+		thrown.expectMessage("Can't find the variable. [abcdefg]");
+		
+		env.getVariable("abcdefg", "");
+	}
+	
+	@Test
+	public void test_Get_Variable2() throws UnsupportedExpressionException {
+		thrown.expect(NullPointerException.class);
+		thrown.expectMessage("Can't find the variable with specify class type. [abcdefg]");
+		
+		env.setVariable("abcdefg", new junit.kenh.expl.beans.AObject());
+		env.getVariable("abcdefg", new junit.kenh.expl.beans.BObject());
+	}
+	
+	@Test
+	public void test_Get_Variable3() throws UnsupportedExpressionException {
+		thrown.expect(NullPointerException.class);
+		thrown.expectMessage("Can't find the variable with specify class type. [abcdefg]");
+		
+		env.setVariable("abcdefg", new junit.kenh.expl.beans.AObject());
+		env.getVariable("abcdefg", junit.kenh.expl.beans.BObject.class);
+	}
+	
 }

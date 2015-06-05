@@ -288,6 +288,61 @@ public class Environment implements Callback {
 	}
 	
 	/**
+	 * Get the variable with specify class type.
+	 * 
+	 * @param key
+	 * @param o
+	 * @return
+	 */
+	public <T> T getVariable(String key, T o) {
+		
+		if(!this.containsVariable(key)) throw new NullPointerException("Can't find the variable. [" + key + "]");
+		
+		Object obj = this.getVariable(key);
+		
+		if(obj == null) throw new NullPointerException("Reference is null. [" + key + "]");
+		
+		Class class1 = obj.getClass();
+		Class class2 = o.getClass();
+		
+		if(class2.isAssignableFrom(class1) || class2 == Object.class) {
+			return (T)obj;
+			
+		} else {
+			throw new NullPointerException("Can't find the variable with specify class type. [" + key + "]");
+		}
+		
+	}
+	
+	/**
+	 * Get the variable with specify class type.
+	 * 
+	 * @param key
+	 * @param o
+	 * @return
+	 */
+	public <T> T getVariable(String key, Class<T> c) {
+		
+		if(!this.containsVariable(key)) throw new NullPointerException("Can't find the variable. [" + key + "]");
+		
+		Object obj = this.getVariable(key);
+		
+		if(obj == null) throw new NullPointerException("Reference is null. [" + key + "]");
+		
+		Class class1 = obj.getClass();
+		Class class2 = c;
+		
+		if(class2.isAssignableFrom(class1) || class2 == Object.class) {
+			return (T)obj;
+			
+		} else {
+			throw new NullPointerException("Can't find the variable with specify class type. [" + key + "]");
+		}
+		
+	}
+	
+	
+	/**
 	 * Add a variable, if the key already exist, remove the old variable.
 	 * @param key
 	 * @param obj

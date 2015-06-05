@@ -123,6 +123,34 @@ public class EnvironmentTest {
 	}
 	
 	@Test
+	public void testVariables2() {
+		
+		int i = 1;
+		
+		java.util.Date d = new java.util.Date();
+		long time = d.getTime();
+		junit.kenh.expl.beans.CObject cObj = new junit.kenh.expl.beans.CObject();
+		
+		env.setVariable("date", d);
+		env.setVariable("cObject", cObj);
+		
+		env.setVariable("string", "ABCDEFG");
+		env.setVariable("int", 123456);
+		env.setVariable("double", 123456.001);
+		
+		
+		Assert.assertEquals("" + i++, time, env.getVariable("date", java.util.Date.class).getTime());
+		Assert.assertEquals("" + i++, time, env.getVariable("date", (java.util.Date)new java.util.Date()).getTime());
+		Assert.assertEquals("" + i++, cObj, env.getVariable("cObject", junit.kenh.expl.beans.TestObject.class));
+		Assert.assertEquals("" + i++, cObj, env.getVariable("cObject", new junit.kenh.expl.beans.AObject()));
+		
+		Assert.assertEquals("" + i++, "ABCDEFG", env.getVariable("string", ""));
+		Assert.assertEquals("" + i++, 123456, env.getVariable("int", 1).intValue());
+		Assert.assertEquals("" + i++, 123456.001, env.getVariable("double", 1.001).doubleValue(), 3);
+		
+	}
+	
+	@Test
 	// kenh.expl.Environment.loadFunctionPackages_SystemProperties()
 	public void testLoadFunctionPackages() {
 		int i = 1;
