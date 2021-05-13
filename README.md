@@ -1,6 +1,6 @@
 # ExpL
 
-The source files is under [xScript](https://github.com/KennethHuang/xScript).
+The source files are under [xScript](https://github.com/KennethHuang/xScript).
 
 **ExpL (Expression Language)**, is a tool to parse string expression. It base on [Apache commons JEXL](http://commons.apache.org/proper/commons-jexl/) & [Apache Commons BeanUtils](http://commons.apache.org/proper/commons-beanutils/). It support nesting, function, etc.
 
